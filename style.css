@@ -1,0 +1,21 @@
+nav div .navbar-nav a{
+    color: rgb(138, 135, 135);
+}
+div .position-absolute h2,p{
+    color: rgb(255, 255, 255);
+}
+.oradores1 {
+    text-align:center;
+    justify-content: center;
+}
+.btn-color{
+    background-color: rgb(139, 218, 20);
+}
+.filtro {
+    filter:brightness(50%);
+    -webkit-filter:brightness(50%);
+}
+.carrusel__texto{
+    bottom: 30%;
+    text-shadow: black;
+}

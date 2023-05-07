@@ -9,13 +9,15 @@ div .position-absolute h2,p{
     justify-content: center;
 }
 .btn-color{
-    background-color: rgb(139, 218, 20);
+    background-color: rgb(106, 165, 18);
 }
 .filtro {
     filter:brightness(50%);
     -webkit-filter:brightness(50%);
 }
-.carrusel__texto{
-    bottom: 30%;
-    text-shadow: black;
+.carousel-text{
+position: absolute;
+right:8%;
+top: 10vw;
+
 }

@@ -1,6 +1,13 @@
+const price=200
+const categories={
+    Estudiante:{percent: 80 ,value:"0"},
+    Trainee: {percent: 50 ,value:"1"},
+    Junior:{percent: 15 ,value:"2"}
+}
 
-
-
+let tickets= null
+let category=null
+let total=null
 
 
 const form= document.getElementById('formTicket')
@@ -115,3 +122,69 @@ form.addEventListener('submit',(e)=>{
     document.getElementById('form__sms').classList.add('form__sms-active')
 }
 })
+
+totalText=totalTag.innerText
+const totalPrice=()=>{
+    if(!tickets||!category) return;
+    const total=((price*tickets)-((price*tickets)/100)*categories[category].percent)
+    totalTag.innerText= totalText+total
+}
+
+const resetCategories=()=>{
+    total=null
+    seleted=null
+    eventsAssignmentAll()
+    totalTag.innertext=totalText
+}
+
+
+const setCategory=(e) => {
+    const option=e.target.value
+    if(option==='none'){
+        resetCategories()
+        return
+    }
+    category=option
+    const index=categories[category].value
+    const container=cardsContainer[index]
+    
+    selected=index
+    changeColors(container, index)
+    eventsAssignmentAll()
+    totalPrice()
+
+}
+const setTicket=(e)=>{
+    const{value}=e.target
+    if(value< 0 || isNaN(value)){
+        e.target.value=0
+        total=null
+        return
+    
+    }
+    tickets=value
+    totalPrice()
+}
+
+
+
+const reset= (e) => {
+    e.preventDefault()
+    for(let input of inputs)
+    input.value=''
+
+    select.value='none'
+    resetCategories()
+    document.querySelectorAll('.form__group-correct').forEach((icono)=>{
+        icono.classList.remove('form__group-correct');
+    });
+    document.querySelectorAll('.form__group-incorrect').forEach((icono)=>{
+        icono.classList.remove('form__group-incorrect');
+    });
+}
+
+
+form.category.addEventListener('change', setCategory)
+form.number.addEventListener('change',setTicket)
+form.number.addEventListener('keyup', setTicket)
+resetBtn.addEventListener('click', reset)

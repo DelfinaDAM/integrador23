@@ -1,3 +1,5 @@
+let selected=null
+
 const cards = document.getElementsByClassName('card-body')
 const cardsContainer=document.querySelectorAll('.btn.card')
 
@@ -25,16 +27,34 @@ const cardLeave=(e) =>{
     changeColors(e.target, index, true)
 }
 const cardClick =(e)=>{
-    const {index}= e.currentTarget.dataset
+    selected= e.currentTarget.dataset.index
+    matchCategory(selected)
+    eventsAssignmentAll()
 }
 
-for (let container of cardsContainer){
+const eventCleaner=(container)=>{
+    container.removeEventListener('mouseenter', cardEnter)
+    container.removeEventListener('mouseleave', cardLeave)
+    container.removeEventListener('click', cardClick)
+}
+
+const eventAssignment=(container)=>{
     container.addEventListener('mouseenter', cardEnter)
     container.addEventListener('mouseleave', cardLeave)
     container.addEventListener('click', cardClick)
 }
 
+const eventsAssignmentAll=()=>{
+    for (let container of cardsContainer){
+    eventCleaner(container)
 
-//videoDeFormulariosConValidaciónDeDatos
-//
-//
+        const {index}=container.dataset
+        if(index!==selected){
+            eventAssignment(container)
+            changeColors(container, index, true)
+        }
+    }
+}
+
+eventsAssignmentAll()
+

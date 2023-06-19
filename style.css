@@ -66,6 +66,7 @@ top: 10vw;
 .form__sms-ok{
     font-size:15px; 
     color: #119200; 
+    text-align: center;
     display: none;
 }
 .form__sms-ok-active{
